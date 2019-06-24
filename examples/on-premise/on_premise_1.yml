@@ -24,8 +24,8 @@
 
       # SSH
       odoo_user_ssh_key:
-        priv: /home/<USER>/.ssh/ansible-odoo
-        pub: /home/<USER>/.ssh/ansible-odoo.pub
+        priv: ~/.ssh/ansible-odoo
+        pub: ~/.ssh/ansible-odoo.pub
       odoo_user_ssh_known_hosts:
         - github.com
 
