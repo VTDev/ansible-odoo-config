@@ -1,14 +1,20 @@
-# DeltaBlue - Odoo Ansible playbook
-# =================================
+# On-Premise - Odoo Ansible playbook
+# ==================================
 #
-# Serves a DeltaBlue application with 1 stack: Python (Odoo)
-# Install PostgreSQL (default `odoo_install_postgresql`: True)
+# Serves a on-premise Odoo installation.
+# Both Odoo/Python and PostgreSQL on the same server.
+#
+# REQUIREMENTS
+# ------------
+# - Create an Ansible inventory file, which defines the host, e.g:
+#   odoo ansible_ssh_host=<IP-ADDRESS> ansible_ssh_user=root
+# - Put SSH keys in some path (see `odoo_user_ssh...` variables)
 
 - name: Odoo
-  hosts: 127.0.0.1
-  connection: local
+  hosts: odoo
   become: yes
   roles:
+    - role: ANXS.postgresql
     - role: ansible-odoo
 
       # General
@@ -16,10 +22,16 @@
       # odoo_force_config: False
       # odoo_config_admin_passwd: DefaultAdminPassword
 
+      # SSH
+      odoo_user_ssh_key:
+        priv: /home/<USER>/.ssh/ansible-odoo
+        pub: /home/<USER>/.ssh/ansible-odoo.pub
+      odoo_user_ssh_known_hosts:
+        - github.com
+
       # PostgreSQL
-      odoo_config_db_host: 127.0.0.1
       # odoo_config_db_user: odoo # default odoo
-      odoo_config_db_passwd: odoo
+      # odoo_config_db_passwd: False # default PostgreSQL peer authentication?
 
       # Odoo Community
       # odoo_repo_url:
