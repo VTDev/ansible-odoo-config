@@ -12,12 +12,12 @@ cd ~/.ansible/roles
 
 **Either:**
 
-Clone the upstream **ansible-odoo** project:
+Clone the upstream **ansible-odoo** project:\
 `git clone https://github.com/OCA/ansible-odoo`
 
-- OR -
+ **... OR ...**
 
-Clone my **ansible-odoo** fork, which has some new features merged from PR's:
+Clone my **ansible-odoo** fork, which has some new features merged from PR's:\
 `git clone https://github.com/novacode-nl/ansible-odoo`
 
 ## Create your ansible-odoo-deploy (Git) project
@@ -26,7 +26,7 @@ Clone my **ansible-odoo** fork, which has some new features merged from PR's:
 
 Create such a **ansible-odoo-deploy** repository for your project and create or copy example file(s).
 
-- OR -
+**... OR ...**
 
 Import (copy) this repository to your Git environment and copy example file(s).
 
@@ -57,4 +57,4 @@ Format:
 
 For example:
 
-ansible-playbook -i 12.0-staging-inventory 12.0-staging.yml
+`ansible-playbook -i 12.0-staging-inventory 12.0-staging.yml`
