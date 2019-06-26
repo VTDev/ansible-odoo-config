@@ -15,7 +15,7 @@ Either:
 
 ## Server
 
-Root access is the quickest and easiest (not safest) way to deploy.
+Root access is the quickest and easiest (not safest) way to deploy.\
 Ensure your SSH public-key (e.g. from `~/.ssh/authorized_keys` file) is copied into `/root/.ssh/authorized_keys`.
 
 ## Local
