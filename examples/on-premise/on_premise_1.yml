@@ -19,19 +19,16 @@
 
       # General
       odoo_version: 12.0
-      # odoo_force_config: False
       # odoo_config_admin_passwd: DefaultAdminPassword
 
       # SSH
-      odoo_user_ssh_key:
-        priv: ~/.ssh/ansible-odoo
-        pub: ~/.ssh/ansible-odoo.pub
+      odoo_user_generate_ssh_key: True
       odoo_user_ssh_known_hosts:
         - github.com
 
       # PostgreSQL
       # odoo_config_db_user: odoo # default odoo
-      # odoo_config_db_passwd: False # default PostgreSQL peer authentication?
+      # odoo_config_db_passwd: False # PostgreSQL peer authentication?
 
       # Odoo Community
       # odoo_repo_url:
