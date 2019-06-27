@@ -1,4 +1,4 @@
-# Delta Blue - Ansible Odoo Deployment
+# Ansible Odoo Deployment - Delta Blue
 
 ![Delta Blue](https://deltablue.cloud/img/logo.deltablue-cloud.color.svg) - https://delta.blue
 
