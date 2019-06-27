@@ -14,7 +14,7 @@
   hosts: odoo
   become: yes
   roles:
-    - role: ANXS.postgresql
+    - role: anxs.postgresql
     - role: ansible-odoo
 
       # General
