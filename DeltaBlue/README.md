@@ -1,5 +1,7 @@
 # Delta Blue - Ansible Odoo Deployment
 
+![Delta Blue](https://deltablue.cloud/img/logo.deltablue-cloud.color.svg) - https://delta.blue
+
 ## SSH access to private Git projects/repositories
 
 The option `odoo_user_generate_ssh_key` ensures a SSH key shall be generated for the Odoo system user (`odoo_user`)
