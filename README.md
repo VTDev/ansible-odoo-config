@@ -1,7 +1,10 @@
 # Ansible Odoo Deployment - Guide
 
-- Some guidance how to deploy Odoo with Ansible.
-- Example playbooks for different kind of setups or provisioners.
+Some guidance how to deploy Odoo with Ansible.
+
+- Check the different kind of setups or provisioners.
+- Contribution (PR or issue) is highly appreciated.
+
 
 ## Create your ansible-odoo-deploy (Git) project
 
