@@ -1,6 +1,6 @@
 # Ansible Odoo Deployment
 
-Some guidance and example playbooks how to deploy Odoo with Ansible.
+Example playbooks and guide for the Ansible Odoo role.
 
 - Check the different kind of setups or provisioners.
 - Contribution (PR or issue) is highly appreciated.
