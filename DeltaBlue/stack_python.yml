@@ -42,5 +42,4 @@
       #   - "/home/{{ odoo_user }}/odoo/enterprise"
       #   - "/home/{{ odoo_user }}/odoo/addons/custom"
       #   - "/home/{{ odoo_user }}/odoo/addons/external"
-      #   - "/home/{{ odoo_user }}/odoo/server/odoo/addons"
       #   - "/home/{{ odoo_user }}/odoo/server/addons"
