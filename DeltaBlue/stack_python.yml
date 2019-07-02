@@ -9,6 +9,7 @@
   connection: local
   become: yes
   roles:
+    - role: anxs.postgresql
     - role: ansible-odoo
       odoo_version: 12.0
 
