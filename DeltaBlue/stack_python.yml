@@ -10,6 +10,7 @@
   become: yes
   roles:
     - role: anxs.postgresql
+      # Settings: https://github.com/ANXS/postgresql/blob/master/defaults/main.yml
     - role: ansible-odoo
       odoo_version: 12.0
 
@@ -19,7 +20,7 @@
         - github.com
 
       # PostgreSQL (install PostgreSQL on the same container)
-      odoo_config_db_host: 127.0.0.1
+      # odoo_config_db_host: 127.0.0.1
       # odoo_config_db_user: odoo # Default odoo
       # odoo_config_db_passwd: odoo # Injected by DeltaBlue scenario/action
 
