@@ -11,7 +11,7 @@
 # - Add SSH keys to the LXC root user.
 
 - name: Odoo
-  hosts: LXC_CONTAINER_HOST_IP
+  hosts: LXC_CONTAINER_NAME
   become: yes
   roles:
     - role: anxs.postgresql
