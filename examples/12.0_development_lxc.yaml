@@ -1,0 +1,28 @@
+# Odoo Ansible - LXC container
+# ============================
+#
+# For Odoo development purposes.
+# Both Odoo/Python and PostgreSQL on the same server.
+#
+# REQUIREMENTS
+# ------------
+# - Create an Ansible inventory file, which defines the host, e.g:
+#   odoo ansible_ssh_host=<IP-ADDRESS> ansible_ssh_user=root
+# - Add SSH keys to the LXC root user.
+
+- name: Odoo
+  hosts: LXC_CONTAINER_HOST_IP
+  become: yes
+  roles:
+    - role: anxs.postgresql
+      postgresql_version: 10
+      postgresql_users:
+        - name: odoo
+          pass: odoo
+          encrypted: yes
+    - role: ansible-odoo
+      odoo_version: 12.0
+      # Developer creates the Odoo dirs
+      odoo_repo_url: False
+      # No systemd or init startup
+      odoo_init: False
