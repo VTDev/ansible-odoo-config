@@ -57,7 +57,7 @@ Run the deployment with the`ansible-playbook` command.
 
 Format:
 
-`ansible-playbook -i <INVENTORY FILE> <PLAYBOOK FILE>`
+`ansible-playbook -i <INVENTORY_FILE> <PLAYBOOK_FILE>`
 
 For example:
 
