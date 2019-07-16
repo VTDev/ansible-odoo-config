@@ -15,14 +15,11 @@
   become: yes
   roles:
     - role: anxs.postgresql
-      postgresql_version: 10
-      postgresql_users:
-        - name: odoo
-          pass: odoo
-          encrypted: yes
+      postgresql_version: 11 # Feel free to change.
     - role: ansible-odoo
-      odoo_version: 12.0
+      # Odoo version determines which dependencies (packages, libraries) shall be installed
+      odoo_version: 12.0 # Feel free to change.
       # Developer creates the Odoo dirs
       odoo_repo_url: False
-      # No systemd or init startup
+      # No systemd or init startup. Developer shall start Odoo with odoo-bin.
       odoo_init: False
