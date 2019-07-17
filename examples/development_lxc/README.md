@@ -64,6 +64,22 @@ Required for the next steps.
 
 `lxc config device add odoo-12-dev homedir disk source=/home/john/odoo/fancyparts path=/home/odoo/odoo`
 
+### 7. Disable autostart of LXC Container
+
+`lxc config set <CONTAINER_NAME> boot.autostart 0`
+
+**Example:**
+
+`lxc config set odoo-12-dev boot.autostart 0`
+
+### 8. Start the LXC Container
+
+`lxc start <CONTAINER_NAME>`
+
+**Example:**
+
+`lxc start odoo-12-dev`
+
 ## TODO
 
 - Create (shell) script, which executes those commands, with container-name in arguments.
