@@ -61,4 +61,4 @@ Format:
 
 For example:
 
-`ansible-playbook -i odoo-12.0-staging-inventory odoo-12.0-staging.yml`
+`ansible-playbook -i odoo-12.0-staging.inventory odoo-12.0-staging.yml`
