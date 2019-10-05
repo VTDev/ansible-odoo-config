@@ -17,7 +17,23 @@
       raw: pip3 install celery
       changed_when: False
   roles:
+    - role: geerlingguy.supervisor
+      supervisor_started: true
+      supervisor_enabled: true
+      supervisor_programs:
+        - name: 'celery_default'
+          command: /usr/local/bin/celery -A odoo worker -l info
+          state: present
+          configuration: |
+            directory = /home/odoo/odoo/addons/subtree/odoo-celery/celery
+            autostart=true
+            autorestart=true
+            stdout_logfile=/var/log/supervisor/celery_default.log
+            user=odoo
     - role: ansible-odoo
+      dependencies:
+        - geerlingguy.supervisor
+
       odoo_version: 12.0
 
       # SSH
@@ -51,9 +67,16 @@
       # Example addons_path
       # odoo_config_addons_path:
       #   - "/home/{{ odoo_user }}/odoo/enterprise"
+      #   - "/home/{{ odoo_user }}/odoo/addons/subtree/odoo-celery"
       #   - "/home/{{ odoo_user }}/odoo/addons/custom"
       #   - "/home/{{ odoo_user }}/odoo/addons/external"
       #   - "/home/{{ odoo_user }}/odoo/server/addons"
 
-      odoo_addons_debian_packages:
-        - python-xlwt
+      # XXX Change with a dedicated Celery user!
+      # odoo_config_custom:
+      #   celery_user: admin
+      #   celery_password: admin
+      #   celery_sudo: True
+
+      # odoo_addons_debian_packages:
+      #   - python-xlwt
