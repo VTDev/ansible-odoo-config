@@ -1,12 +1,19 @@
 # DeltaBlue - Odoo Ansible playbook
 # =================================
 #
-# Serves a DeltaBlue application with 2 stacks:
+# Serves a DeltaBlue "application" with 2 stacks:
 # 1. Python (Odoo)
 # 2. PostgreSQL
 #
 # The Python stack is already configured to connect to PostgreSQL.
-# So skip the installation PostgreSQL, hence: `odoo_install_postgresql`: False
+# So skip the installation PostgreSQL, hence:
+#  `odoo_install_postgresql`: False
+#
+# DEPLOYED SERVICES
+# -----------------
+# 1. Celery controlled by Supervisor.
+#    This is a requirement for the Odoo Celery module:
+#    https://apps.odoo.com/apps/modules/12.0/celery/
 
 - name: Odoo
   hosts: 127.0.0.1
