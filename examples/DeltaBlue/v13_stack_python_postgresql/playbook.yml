@@ -1,29 +1,41 @@
 # DeltaBlue - Odoo Ansible playbook
 # =================================
 #
-# Serves a DeltaBlue application with 1 stack: Python (Odoo)
-# Install PostgreSQL (default `odoo_install_postgresql`: True)
+# Serves a DeltaBlue application with 2 stacks:
+# 1. Python (Odoo)
+# 2. PostgreSQL
+#
+# The Python stack is already configured to connect to PostgreSQL.
+# So skip the installation PostgreSQL, hence: `odoo_install_postgresql`: False
 
 - name: Odoo
   hosts: 127.0.0.1
   connection: local
   become: yes
+  pre_tasks:
+    - name: (Hack) to avoid conflict/crash on python3-serial - also installed by Odoo PypI dependencies.
+      # This conflict/crash not always occurs. It depends on the host/server.
+      raw: apt-get -y remove python3-serial
+      changed_when: False
   roles:
     - role: ansible-odoo
-      odoo_version: 12.0
+      odoo_version: 13.0
 
       # SSH
       odoo_user_generate_ssh_key: True
       odoo_user_ssh_known_hosts:
         - github.com
 
-      # PostgreSQL (install PostgreSQL on the same container)
-      # odoo_config_db_host: 127.0.0.1
-      # odoo_config_db_user: odoo # Default odoo
+      # PostgreSQL (on a different DeltaBlue provisioned container)
+      odoo_install_postgresql: False
+      odoo_config_db_host: 127.0.0.1
+      # odoo_config_db_user: odoo # default odoo
       # odoo_config_db_passwd: odoo # Injected by DeltaBlue scenario/action
 
       # Default admin_passwd (should be replaced)        
       # odoo_config_admin_passwd: DefaultAdminPassword
+
+      odoo_logfile: "/var/log/odoo/odoo.log"
 
       # Odoo Community
       # odoo_repo_url:
@@ -35,7 +47,7 @@
 
       # Odoo Addons
       # odoo_addons_repo_url:
-      # odoo_addons_repo_rev: 12.0
+      # odoo_addons_repo_rev: 12.0-
 
       # Example addons_path
       # odoo_config_addons_path:
