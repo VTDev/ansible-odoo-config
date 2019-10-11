@@ -14,15 +14,20 @@
 # 1. Celery controlled by Supervisor.
 #    This is a requirement for the Odoo Celery module:
 #    https://apps.odoo.com/apps/modules/12.0/celery/
+#
+# REQUIREMENTS
+# ------------
+# 1. Ensure celery is in file: {{ odoo_addons_dir }}/requirements.txt
 
 - name: Odoo
   hosts: 127.0.0.1
   connection: local
   become: yes
-  pre_tasks:
-    - name: Install Celery (python3 package)
-      raw: pip3 install celery
-      changed_when: False
+  # TODO REMOVEME if above works - {{ odoo_addons_dir }}/requirements.txt
+  # pre_tasks:
+  #   - name: Install Celery (python3 package)
+  #     raw: pip3 install celery
+  #     changed_when: False
   roles:
     - role: geerlingguy.supervisor
       supervisor_started: true
