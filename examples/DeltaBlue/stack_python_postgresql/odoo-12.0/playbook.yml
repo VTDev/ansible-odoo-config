@@ -25,7 +25,10 @@
       odoo_install_postgresql: False
       odoo_config_db_host: 127.0.0.1
       # odoo_config_db_user: odoo # default odoo
-      # odoo_config_db_passwd: odoo # Injected by DeltaBlue scenario/action
+
+      # Replaced by DeltaBlue scenario/task (DB_PASSWORD)
+      # Don't change this, so search/replacement works.
+      odoo_config_db_passwd: False
 
       # Default admin_passwd (should be replaced)        
       # odoo_config_admin_passwd: DefaultAdminPassword
