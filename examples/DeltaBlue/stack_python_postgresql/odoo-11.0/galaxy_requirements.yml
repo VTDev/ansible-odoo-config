@@ -1,6 +1,5 @@
 # from galaxy
 - src: anxs.postgresql
-- src: geerlingguy.supervisor
 
 # GitHub
 - src: https://github.com/novacode-nl/ansible-odoo.git

@@ -77,7 +77,7 @@
 
       # Odoo Addons
       # odoo_addons_repo_url:
-      # odoo_addons_repo_rev: 12.0-
+      # odoo_addons_repo_rev: 12.0
 
       # Example addons_path
       # odoo_config_addons_path:
