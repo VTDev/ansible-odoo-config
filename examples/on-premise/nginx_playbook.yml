@@ -1,0 +1,47 @@
+- name: Nginx
+  hosts: nginx_production
+  become: yes
+  roles:
+    - role: geerlingguy.nginx
+      nginx_upstreams:
+        - name: odoo
+          servers:
+            - "127.0.0.1:8069"
+        - name: odoochat
+          servers:
+            - "127.0.0.1:8072"
+      nginx_vhosts:
+        - listen: "80"
+          server_name: "example.com"
+          state: "present"
+          filename: "http_example.com.conf"
+          extra_parameters: |
+            rewrite ^(.*) https://$host$1 permanent;
+        - listen: "443 ssl"
+          server_name: "example.com"
+          filename: "example.com.conf"
+          state: "present"
+          access_log: "/var/log/nginx/odoo.access.log"
+          error_log: "/var/log/nginx/odoo.error.log"
+          extra_parameters: |
+            location ^~ /.well-known/acme-challenge/ {
+                default_type "text/plain";
+                root /var/www/letsencrypt;
+            }
+            location / {
+                proxy_read_timeout 720s;
+                proxy_connect_timeout 720s;
+                proxy_send_timeout 720s;
+                proxy_set_header X-Forwarded-Host $host;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto $scheme;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_pass http://odoo;
+            }
+            location /longpolling {
+                proxy_pass http://odoochat;
+            }
+            # ssl_certificate /etc/letsencrypt/<DIR>/<example.com>/fullchain.pem; # managed by Certbot
+            # ssl_certificate_key /etc/letsencrypt/<DIR>/<example.com>/privkey.pem; # managed by Certbot
+            # include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+            # ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot

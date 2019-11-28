@@ -30,6 +30,11 @@
       # odoo_config_db_user: odoo # default odoo
       # odoo_config_db_passwd: False # PostgreSQL peer authentication?
 
+      # Server
+      # odoo_logfile: "/var/log/odoo/odoo.log"      
+      # odoo_config_proxy_mode: True
+      # odoo_config_workers: 3
+
       # Odoo Community
       # odoo_repo_url:
       # odoo_repo_rev: 12.0
