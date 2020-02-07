@@ -18,6 +18,8 @@
       raw: apt-get -y remove python3-serial
       changed_when: False
   roles:
+    - role: postgresql-client
+      postgresql_client_version: 11
     - role: ansible-odoo
       odoo_version: 13.0
 
