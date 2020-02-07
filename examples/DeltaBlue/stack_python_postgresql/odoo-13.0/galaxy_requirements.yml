@@ -3,6 +3,5 @@
   version: master
   name: ansible-odoo
 
-- src: https://github.com/cimon-io/ansible-role-postgresql-client.git
-  version: master
-  name: ansible-role-postgresql-client
+# from galaxy
+- src: cimon-io.postgresql-client
