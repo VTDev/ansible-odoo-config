@@ -15,5 +15,4 @@
   roles:
     - role: anxs.postgresql
       postgresql_version: 12
-      postgresql_pg_hba_custom:
-        - { type: local, database: all, user: all, address: "", method: "peer"}
+      postgresql_default_auth_method: "md5"
