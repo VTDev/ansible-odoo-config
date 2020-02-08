@@ -1,2 +1,7 @@
-# from galaxy
-- src: anxs.postgresql
+## GitHub: PostgreSQL v12
+- src: https://github.com/ANXS/postgresql.git
+  version: v1.12.0
+  name: anxs.postgresql
+
+## from galaxy
+#- src: anxs.postgresql
