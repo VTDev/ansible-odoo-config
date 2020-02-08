@@ -16,4 +16,4 @@
     - role: anxs.postgresql
       postgresql_version: 12
       postgresql_pg_hba_custom:
-        - { type: local, database: all, user: odoo, address: "", method: "md5", comment: 'Odoo database user' }
+        - { type: local, database: all, user: all, address: "", method: "peer"}
