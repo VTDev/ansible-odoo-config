@@ -59,3 +59,56 @@
         # - "/home/{{ odoo_user }}/odoo/addons/custom"
         # - "/home/{{ odoo_user }}/odoo/addons/external"
         - "/home/{{ odoo_user }}/odoo/server/addons"
+    - role: geerlingguy.nginx
+      nginx_upstreams:
+        - name: odoo
+          servers:
+            - "127.0.0.1:8069"
+        - name: odoochat
+          servers:
+            - "127.0.0.1:8072"
+      nginx_vhosts:
+        - listen: "80"
+          server_name: "localhost"
+          state: "present"
+          filename: "odoo.conf"
+
+          # allow upload size to 200MB
+          client_max_body_size: "200M"
+
+          # log
+          access_log: "/var/log/nginx/odoo.access.log"
+          error_log: "/var/log/nginx/odoo.error.log"
+          extra_parameters: |
+            # add headers for odoo proxy mode
+            proxy_set_header X-Forwarded-Host $host;
+            proxy_set_header X-Forwarded-For $http_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
+            proxy_set_header X-Real-IP $http_x_forwarded_for;
+
+            # set timeouts
+            proxy_connect_timeout 60s;
+            proxy_read_timeout 1300s;
+            proxy_send_timeout 1300s;
+
+            # redirect longpoll requests to odoo longpolling port
+            location /longpolling {
+              proxy_pass http://odoochat;
+            }
+
+            # cache some static files to ease the load on Odoo.
+            location ~* /web/static/ {
+              proxy_cache_valid 200 90m;
+              proxy_buffering on;
+              expires 86400;
+              proxy_pass http://odoo;
+            }
+
+            # redirect requests to odoo backend server
+            location / {
+                proxy_pass http://odoo;
+            }
+
+            # common gzip
+            gzip_types text/css text/scss text/plain text/xml application/xml application/json application/javascript;
+            gzip on;
