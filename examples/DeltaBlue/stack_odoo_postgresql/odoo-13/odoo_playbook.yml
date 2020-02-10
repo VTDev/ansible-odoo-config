@@ -19,7 +19,7 @@
       changed_when: False
   roles:
     - role: cimon-io.postgresql-client
-      postgresql_client_version: 11
+      postgresql_client_version: 12
     - role: ansible-odoo
       odoo_version: 13.0
 
@@ -43,7 +43,7 @@
       odoo_logfile: "/var/log/odoo/odoo.log"
 
       # Odoo Community
-      odoo_repo_url:
+      odoo_repo_url: https://github.com/odoo/odoo.git
       odoo_repo_rev: 13.0
 
       # Odoo Enterprise

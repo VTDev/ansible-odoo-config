@@ -5,3 +5,4 @@
 
 # from galaxy
 - src: cimon-io.postgresql-client
+- src: geerlingguy.nginx
