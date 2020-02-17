@@ -1,6 +1,6 @@
 # GitHub
 - src: https://github.com/novacode-nl/ansible-odoo.git
-  version: master
+  version: novacode-20.02.1
   name: ansible-odoo
 
 # from galaxy
